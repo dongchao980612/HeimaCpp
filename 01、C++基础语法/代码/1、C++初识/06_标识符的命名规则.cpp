@@ -8,7 +8,7 @@ using namespace std;
 // 3、第一个字符必须为字母或下划线
 // 4、标识符中字母区分大小写
 
-int main()
+int main(int argc, char const *argv[])
 {
 	// 1、标识符不能是关键字
 	// int int = 100;
@@ -26,7 +26,7 @@ int main()
 	cout << aaa << endl;
 	// cout << AAA << endl;
 
-    // 建议：给标识符命名时，争取做到见名知意的效果，方便自己和他人的阅读
+	// 建议：给标识符命名时，争取做到见名知意的效果，方便自己和他人的阅读
 
 	return 0;
 }

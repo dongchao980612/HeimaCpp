@@ -2,7 +2,7 @@
 
 using namespace std;
 
-int main()
+int main(int argc, char const *argv[])
 {
 	// short(短整型)(-32768~32767)
 	short num1 = 32767 + 1;

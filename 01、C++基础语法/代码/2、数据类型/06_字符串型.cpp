@@ -3,7 +3,7 @@
 
 using namespace std;
 
-int main()
+int main(int argc, char const *argv[])
 {
 	// 1、C风格字符串
 	// 注意事项 1：char 字符串名[]

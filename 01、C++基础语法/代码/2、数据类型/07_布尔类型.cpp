@@ -2,7 +2,7 @@
 
 using namespace std;
 
-int main()
+int main(int argc, char const *argv[])
 {
 	bool flag = true;
 	cout << flag << endl;  // 1

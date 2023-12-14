@@ -2,7 +2,7 @@
 
 using namespace std;
 
-int main()
+int main(int argc, char const *argv[])
 {
 	float f1 = 3.14f;
 	double d1 = 3.14;

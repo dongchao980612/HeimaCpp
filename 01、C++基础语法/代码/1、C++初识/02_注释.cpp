@@ -12,7 +12,7 @@ using namespace std;
 	有且仅有一个
 
 */
-int main()
+int main(int argc, char const *argv[])
 {
 	// 代码含义是在屏幕上输出Hello world
 	cout << "Hello world" << endl;

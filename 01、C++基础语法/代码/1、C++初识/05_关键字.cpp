@@ -2,7 +2,7 @@
 
 using namespace std;
 
-int main()
+int main(int argc, char const *argv[])
 {
 	// 创建变量：数据类型  变量名 = 初始值
 	// 不要用关键字给变量或者常量起名称

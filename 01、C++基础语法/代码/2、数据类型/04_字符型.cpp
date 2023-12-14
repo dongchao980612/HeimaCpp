@@ -2,7 +2,7 @@
 
 using namespace std;
 
-int main()
+int main(int argc, char const *argv[])
 {
 	// 1、字符型变量创建方式
 	char ch = 'a';

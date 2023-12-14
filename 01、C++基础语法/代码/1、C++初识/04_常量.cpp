@@ -5,7 +5,7 @@ using namespace std;
 // 1、宏常量
 #define day 7
 
-int main()
+int main(int argc, char const *argv[])
 {
 	cout << "一周里总共有 " << day << " 天" << endl;
 	// day = 8;  //报错，宏常量不可以修改
