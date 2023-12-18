@@ -11,6 +11,7 @@ class C1
 struct C2 {
 	int m_A;  //默认是公共权限
 };
+
 int main(int argc, char const *argv[])
 {
 	// 在C++中 struct和class唯一的区别就在于默认的访问权限不同
