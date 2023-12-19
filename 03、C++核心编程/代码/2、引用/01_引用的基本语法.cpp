@@ -10,7 +10,9 @@ int main(int argc, char const *argv[])
 	int &b = a;
 
 	cout << "a = " << a << endl;
-	cout << "b = " << b << endl;
+	cout << "b = " << b <<
+	
+	 endl;
 
 	b = 100;
 
