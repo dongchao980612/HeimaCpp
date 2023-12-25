@@ -10,6 +10,7 @@ class Person
 	{
 		m_Age = new int(age);  //将年龄数据开辟到堆区
 	}
+	
 	//重载赋值运算符
 	Person &operator=(Person &p)
 	{
