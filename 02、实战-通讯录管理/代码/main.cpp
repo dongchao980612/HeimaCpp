@@ -20,7 +20,7 @@ struct Person {
 
 // 通讯录结构体
 struct Addressbooks {
-	struct Person personArray[MAXSIZE];	 //通讯录中保存的联系人数组
+	struct Person m_PersonArray[MAXSIZE];	 //通讯录中保存的联系人数组
 	int m_Size;							 //通讯录中人员个数
 };
 
@@ -33,7 +33,7 @@ void press_key()
 
 void addPerson(Addressbooks *abs)
 {
-	//判断电话本是否满了
+	// 判断电话本是否满了
 	if (abs->m_Size == MAXSIZE) {
 		cout << "通讯录已满，无法添加" << endl;
 		return;
@@ -42,7 +42,7 @@ void addPerson(Addressbooks *abs)
 		string name;
 		cout << "请输入姓名：" << endl;
 		cin >> name;
-		abs->personArray[abs->m_Size].m_Name = name;
+		abs->m_PersonArray[abs->m_Size].m_Name = name;
 
 		cout << "请输入性别：" << endl;
 		cout << "1 -- 男" << endl;
@@ -53,7 +53,7 @@ void addPerson(Addressbooks *abs)
 		while (true) {
 			cin >> sex;
 			if (sex == 1 || sex == 2) {
-				abs->personArray[abs->m_Size].m_Sex = sex;
+				abs->m_PersonArray[abs->m_Size].m_Sex = sex;
 				break;
 			}
 			cout << "性别输入有误，请重新输入：";
@@ -63,7 +63,7 @@ void addPerson(Addressbooks *abs)
 		cout << "请输入年龄：" << endl;
 		int age = 0;
 		cin >> age;
-		abs->personArray[abs->m_Size].m_Age = age;
+		abs->m_PersonArray[abs->m_Size].m_Age = age;
 
 		// 联系电话
 		cout << "请输入联系电话：" << endl;
@@ -71,7 +71,7 @@ void addPerson(Addressbooks *abs)
 		while (true) {
 			cin >> phone;
 			if (phone.size() == 11) {
-				abs->personArray[abs->m_Size].m_Phone = phone;
+				abs->m_PersonArray[abs->m_Size].m_Phone = phone;
 				break;
 			}
 			cout << "联系电话输入有误，请重新输入：";
@@ -81,7 +81,7 @@ void addPerson(Addressbooks *abs)
 		cout << "请输入家庭住址：" << endl;
 		string address;
 		cin >> address;
-		abs->personArray[abs->m_Size].m_Addr = address;
+		abs->m_PersonArray[abs->m_Size].m_Addr = address;
 
 		//更新通讯录人数
 		abs->m_Size++;
@@ -98,11 +98,11 @@ void showPerson(Addressbooks abs)
 		cout << "当前记录为空" << endl;
 	} else {
 		for (int i = 0; i < abs.m_Size; i++) {
-			cout << "姓名：" << abs.personArray[i].m_Name << "\t";
-			cout << "性别：" << (abs.personArray[i].m_Sex == 1 ? "男" : "女") << "\t";
-			cout << "年龄：" << abs.personArray[i].m_Age << "\t";
-			cout << "电话：" << abs.personArray[i].m_Phone << "\t";
-			cout << "住址：" << abs.personArray[i].m_Addr << endl;
+			cout << "姓名：" << abs.m_PersonArray[i].m_Name << "\t";
+			cout << "性别：" << (abs.m_PersonArray[i].m_Sex == 1 ? "男" : "女") << "\t";
+			cout << "年龄：" << abs.m_PersonArray[i].m_Age << "\t";
+			cout << "电话：" << abs.m_PersonArray[i].m_Phone << "\t";
+			cout << "住址：" << abs.m_PersonArray[i].m_Addr << endl;
 		}
 	}
 
@@ -113,7 +113,7 @@ void showPerson(Addressbooks abs)
 int isExist(Addressbooks abs, string name)
 {
 	for (int i = 0; i < abs.m_Size; i++) {
-		if (abs.personArray[i].m_Name == name) {
+		if (abs.m_PersonArray[i].m_Name == name) {
 			return i;
 		}
 	}
@@ -130,7 +130,7 @@ void deletePerson(Addressbooks *abs)
 	int ret = isExist(*abs, name);
 	if (ret != -1) {
 		for (int i = ret; i < abs->m_Size; i++) {
-			abs->personArray[i] = abs->personArray[i + 1];
+			abs->m_PersonArray[i] = abs->m_PersonArray[i + 1];
 		}
 		abs->m_Size--;
 		cout << "删除成功" << endl;
@@ -150,11 +150,11 @@ void findPerson(Addressbooks abs)
 
 	int ret = isExist(abs, name);
 	if (ret != -1) {
-		cout << "姓名：" << abs.personArray[ret].m_Name << "\t";
-		cout << "性别：" << abs.personArray[ret].m_Sex << "\t";
-		cout << "年龄：" << abs.personArray[ret].m_Age << "\t";
-		cout << "电话：" << abs.personArray[ret].m_Phone << "\t";
-		cout << "住址：" << abs.personArray[ret].m_Addr << endl;
+		cout << "姓名：" << abs.m_PersonArray[ret].m_Name << "\t";
+		cout << "性别：" << abs.m_PersonArray[ret].m_Sex << "\t";
+		cout << "年龄：" << abs.m_PersonArray[ret].m_Age << "\t";
+		cout << "电话：" << abs.m_PersonArray[ret].m_Phone << "\t";
+		cout << "住址：" << abs.m_PersonArray[ret].m_Addr << endl;
 	} else {
 		cout << "查无此人" << endl;
 	}
@@ -175,7 +175,7 @@ void modifyPerson(Addressbooks *abs)
 		string name;
 		cout << "请输入姓名：" << endl;
 		cin >> name;
-		abs->personArray[ret].m_Name = name;
+		abs->m_PersonArray[ret].m_Name = name;
 
 		cout << "请输入性别：" << endl;
 		cout << "1 -- 男" << endl;
@@ -186,7 +186,7 @@ void modifyPerson(Addressbooks *abs)
 		while (true) {
 			cin >> sex;
 			if (sex == 1 || sex == 2) {
-				abs->personArray[ret].m_Sex = sex;
+				abs->m_PersonArray[ret].m_Sex = sex;
 				break;
 			}
 			cout << "输入有误，请重新输入";
@@ -196,19 +196,19 @@ void modifyPerson(Addressbooks *abs)
 		cout << "请输入年龄：" << endl;
 		int age = 0;
 		cin >> age;
-		abs->personArray[ret].m_Age = age;
+		abs->m_PersonArray[ret].m_Age = age;
 
 		//联系电话
 		cout << "请输入联系电话：" << endl;
 		string phone = "";
 		cin >> phone;
-		abs->personArray[ret].m_Phone = phone;
+		abs->m_PersonArray[ret].m_Phone = phone;
 
 		//家庭住址
 		cout << "请输入家庭住址：" << endl;
 		string address;
 		cin >> address;
-		abs->personArray[ret].m_Addr = address;
+		abs->m_PersonArray[ret].m_Addr = address;
 
 		cout << "修改成功" << endl;
 	} else {
