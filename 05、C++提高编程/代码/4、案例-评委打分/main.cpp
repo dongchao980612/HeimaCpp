@@ -1,16 +1,19 @@
+#include <stdlib.h>
+#include <time.h>
+
 #include <algorithm>
+#include <ctime>
 #include <deque>
 #include <iostream>
 #include <string>
 #include <vector>
-#include <stdlib.h>
-#include <time.h>
-#include <ctime>
 
 using namespace std;
 
 class Person
 {
+	friend ostream& operator<<(ostream& out, Person& p);
+
    public:
 	Person(string name, int score)
 	{
@@ -22,14 +25,20 @@ class Person
 	int m_Score;	//平均分
 };
 
-void print(vector<Person> &v)
+ostream& operator<<(ostream& out, Person& p)
+{
+	out << "Name:" << p.m_Name << " Score:" << p.m_Score;
+	return cout;
+}
+
+void print(vector<Person>& v)
 {
 	for (vector<Person>::iterator dit = v.begin(); dit != v.end(); dit++) {
-		cout << "选手：" << (*dit).m_Name << "\t打分：" << (*dit).m_Score << endl;
+		cout << (*dit) << endl;
 	}
 }
 
-void createPerson(vector<Person> &v)
+void createPerson(vector<Person>& v)
 {
 	string nameSeed = "ABCDE";
 	for (int i = 0; i < 5; i++) {
@@ -46,7 +55,7 @@ void createPerson(vector<Person> &v)
 }
 
 // 打分
-void setScore(vector<Person> &v)
+void setScore(vector<Person>& v)
 {
 	for (vector<Person>::iterator it = v.begin(); it != v.end(); it++) {
 		//将评委的分数 放入到deque容器中
@@ -55,14 +64,8 @@ void setScore(vector<Person> &v)
 			int score = rand() % 41 + 60;  // 60 ~ 100
 			d.push_back(score);
 		}
-#if 0
-		cout << "选手： " << it->m_Name << " 打分： " << endl;
-		for (deque<int>::iterator dit = d.begin(); dit != d.end(); dit++) {
-			cout << *dit << " ";
-		}
-		cout << endl;
 
-#endif
+
 		//排序
 		sort(d.begin(), d.end());
 
@@ -83,7 +86,7 @@ void setScore(vector<Person> &v)
 	}
 }
 
-int main(int argc, char const *argv[])
+int main(int argc, char const* argv[])
 {
 	//随机数种子
 	srand((unsigned int)time(NULL));
@@ -91,8 +94,8 @@ int main(int argc, char const *argv[])
 	// 1、创建5名选手
 	vector<Person> v;  //存放选手容器
 	createPerson(v);
-	// print(v);
-
+	print(v);
+	cout << "****************" << endl;
 	// 2、给5名选手打分
 	setScore(v);
 
