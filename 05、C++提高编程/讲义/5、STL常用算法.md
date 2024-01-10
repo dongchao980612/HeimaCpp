@@ -1056,7 +1056,769 @@ int main() {
 
 **总结：**merge合并的两个容器必须的有序序列
 
+### 5.4 常用拷贝和替换算法
 
+**学习目标：**
+
+- 掌握常用的拷贝和替换算法
+
+**算法简介：**
+
+- `copy`                      // 容器内指定范围的元素拷贝到另一容器中
+- `replace`                // 将容器内指定范围的旧元素修改为新元素
+- `replace_if `          // 容器内指定范围满足条件的元素替换为新元素
+- `swap`                     // 互换两个容器的元素
+
+
+
+
+#### 5.4.1 copy
+
+**功能描述：**
+
+* 容器内指定范围的元素拷贝到另一容器中
+
+
+
+**函数原型：**
+
+- `copy(iterator beg, iterator end, iterator dest);  `
+
+  // 按值查找元素，找到返回指定位置迭代器，找不到返回结束迭代器位置
+
+  // beg  开始迭代器
+
+  // end  结束迭代器
+
+  // dest 目标起始迭代器
+
+
+
+**示例：**
+
+```c++
+#include <algorithm>
+#include <vector>
+
+class myPrint
+{
+public:
+	void operator()(int val)
+	{
+		cout << val << " ";
+	}
+};
+
+void test01()
+{
+	vector<int> v1;
+	for (int i = 0; i < 10; i++) {
+		v1.push_back(i + 1);
+	}
+	vector<int> v2;
+	v2.resize(v1.size());
+	copy(v1.begin(), v1.end(), v2.begin());
+
+	for_each(v2.begin(), v2.end(), myPrint());
+	cout << endl;
+}
+
+int main() {
+
+	test01();
+
+	system("pause");
+
+	return 0;
+}
+```
+
+**总结：**利用copy算法在拷贝时，目标容器记得提前开辟空间
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#### 5.4.2 replace
+
+**功能描述：**
+
+* 将容器内指定范围的旧元素修改为新元素
+
+
+
+**函数原型：**
+
+- `replace(iterator beg, iterator end, oldvalue, newvalue);  `
+
+  // 将区间内旧元素 替换成 新元素
+
+  // beg 开始迭代器
+
+  // end 结束迭代器
+
+  // oldvalue 旧元素
+
+  // newvalue 新元素
+
+
+
+**示例：**
+
+```c++
+#include <algorithm>
+#include <vector>
+
+class myPrint
+{
+public:
+	void operator()(int val)
+	{
+		cout << val << " ";
+	}
+};
+
+void test01()
+{
+	vector<int> v;
+	v.push_back(20);
+	v.push_back(30);
+	v.push_back(20);
+	v.push_back(40);
+	v.push_back(50);
+	v.push_back(10);
+	v.push_back(20);
+
+	cout << "替换前：" << endl;
+	for_each(v.begin(), v.end(), myPrint());
+	cout << endl;
+
+	//将容器中的20 替换成 2000
+	cout << "替换后：" << endl;
+	replace(v.begin(), v.end(), 20,2000);
+	for_each(v.begin(), v.end(), myPrint());
+	cout << endl;
+}
+
+int main() {
+
+	test01();
+
+	system("pause");
+
+	return 0;
+}
+```
+
+**总结：**replace会替换区间内满足条件的元素
+
+
+
+
+
+
+
+
+
+
+
+
+
+#### 5.4.3 replace_if
+
+**功能描述:**  
+
+* 将区间内满足条件的元素，替换成指定元素
+
+
+
+**函数原型：**
+
+- `replace_if(iterator beg, iterator end, _pred, newvalue);  `
+
+  // 按条件替换元素，满足条件的替换成指定元素
+
+  // beg 开始迭代器
+
+  // end 结束迭代器
+
+  // _pred 谓词
+
+  // newvalue 替换的新元素
+
+
+
+**示例：**
+
+```c++
+#include <algorithm>
+#include <vector>
+
+class myPrint
+{
+public:
+	void operator()(int val)
+	{
+		cout << val << " ";
+	}
+};
+
+class ReplaceGreater30
+{
+public:
+	bool operator()(int val)
+	{
+		return val >= 30;
+	}
+
+};
+
+void test01()
+{
+	vector<int> v;
+	v.push_back(20);
+	v.push_back(30);
+	v.push_back(20);
+	v.push_back(40);
+	v.push_back(50);
+	v.push_back(10);
+	v.push_back(20);
+
+	cout << "替换前：" << endl;
+	for_each(v.begin(), v.end(), myPrint());
+	cout << endl;
+
+	//将容器中大于等于的30 替换成 3000
+	cout << "替换后：" << endl;
+	replace_if(v.begin(), v.end(), ReplaceGreater30(), 3000);
+	for_each(v.begin(), v.end(), myPrint());
+	cout << endl;
+}
+
+int main() {
+
+	test01();
+
+	system("pause");
+
+	return 0;
+}
+```
+
+**总结：**replace_if按条件查找，可以利用仿函数灵活筛选满足的条件
+
+
+
+
+
+
+
+#### 5.4.4 swap
+
+**功能描述：**
+
+* 互换两个容器的元素
+
+
+
+**函数原型：**
+
+- `swap(container c1, container c2);  `
+
+  // 互换两个容器的元素
+
+  // c1容器1
+
+  // c2容器2
+
+  
+
+**示例：**
+
+```c++
+#include <algorithm>
+#include <vector>
+
+class myPrint
+{
+public:
+	void operator()(int val)
+	{
+		cout << val << " ";
+	}
+};
+
+void test01()
+{
+	vector<int> v1;
+	vector<int> v2;
+	for (int i = 0; i < 10; i++) {
+		v1.push_back(i);
+		v2.push_back(i+100);
+	}
+
+	cout << "交换前： " << endl;
+	for_each(v1.begin(), v1.end(), myPrint());
+	cout << endl;
+	for_each(v2.begin(), v2.end(), myPrint());
+	cout << endl;
+
+	cout << "交换后： " << endl;
+	swap(v1, v2);
+	for_each(v1.begin(), v1.end(), myPrint());
+	cout << endl;
+	for_each(v2.begin(), v2.end(), myPrint());
+	cout << endl;
+}
+
+int main() {
+
+	test01();
+
+	system("pause");
+
+	return 0;
+}
+```
+
+**总结：**swap交换容器时，注意交换的容器要同种类型
+
+
+
+
+
+
+
+
+
+
+
+
+
+### 5.5 常用算术生成算法
+
+**学习目标：**
+
+- 掌握常用的算术生成算法
+
+
+
+**注意：**
+
+* 算术生成算法属于小型算法，使用时包含的头文件为 `#include <numeric>`
+
+
+
+**算法简介：**
+
+- `accumulate`      // 计算容器元素累计总和
+
+- `fill`                 // 向容器中添加元素
+
+  
+
+#### 5.5.1 accumulate
+
+**功能描述：**
+
+*  计算区间内 容器元素累计总和
+
+
+
+**函数原型：**
+
+- `accumulate(iterator beg, iterator end, value);  `
+
+  // 计算容器元素累计总和
+
+  // beg 开始迭代器
+
+  // end 结束迭代器
+
+  // value 起始值
+
+
+
+**示例：**
+
+```c++
+#include <numeric>
+#include <vector>
+void test01()
+{
+	vector<int> v;
+	for (int i = 0; i <= 100; i++) {
+		v.push_back(i);
+	}
+
+	int total = accumulate(v.begin(), v.end(), 0);
+
+	cout << "total = " << total << endl;
+}
+
+int main() {
+
+	test01();
+
+	system("pause");
+
+	return 0;
+}
+```
+
+**总结：**accumulate使用时头文件注意是 numeric，这个算法很实用
+
+
+
+#### 5.5.2 fill
+
+**功能描述：**
+
+* 向容器中填充指定的元素
+
+
+
+**函数原型：**
+
+- `fill(iterator beg, iterator end, value);  `
+
+  // 向容器中填充元素
+
+  // beg 开始迭代器
+
+  // end 结束迭代器
+
+  // value 填充的值
+
+
+
+**示例：**
+
+```c++
+#include <numeric>
+#include <vector>
+#include <algorithm>
+
+class myPrint
+{
+public:
+	void operator()(int val)
+	{
+		cout << val << " ";
+	}
+};
+
+void test01()
+{
+
+	vector<int> v;
+	v.resize(10);
+	//填充
+	fill(v.begin(), v.end(), 100);
+
+	for_each(v.begin(), v.end(), myPrint());
+	cout << endl;
+}
+
+int main() {
+
+	test01();
+
+	system("pause");
+
+	return 0;
+}
+```
+
+**总结：**利用fill可以将容器区间内元素填充为 指定的值
+
+
+
+
+
+### 5.6 常用集合算法
+
+**学习目标：**
+
+- 掌握常用的集合算法
+
+
+
+**算法简介：**
+
+- `set_intersection`          // 求两个容器的交集
+
+- `set_union`                       // 求两个容器的并集
+
+- `set_difference `              // 求两个容器的差集
+
+  
+
+
+
+#### 5.6.1 set_intersection
+
+**功能描述：**
+
+* 求两个容器的交集
+
+
+
+**函数原型：**
+
+- `set_intersection(iterator beg1, iterator end1, iterator beg2, iterator end2, iterator dest);  `
+
+  // 求两个集合的交集
+
+  // **注意:两个集合必须是有序序列**
+
+  // beg1 容器1开始迭代器
+  // end1 容器1结束迭代器
+  // beg2 容器2开始迭代器
+  // end2 容器2结束迭代器
+  // dest 目标容器开始迭代器
+
+
+
+**示例：**
+
+```C++
+#include <vector>
+#include <algorithm>
+
+class myPrint
+{
+public:
+	void operator()(int val)
+	{
+		cout << val << " ";
+	}
+};
+
+void test01()
+{
+	vector<int> v1;
+	vector<int> v2;
+	for (int i = 0; i < 10; i++)
+    {
+		v1.push_back(i);
+		v2.push_back(i+5);
+	}
+
+	vector<int> vTarget;
+	//取两个里面较小的值给目标容器开辟空间
+	vTarget.resize(min(v1.size(), v2.size()));
+
+	//返回目标容器的最后一个元素的迭代器地址
+	vector<int>::iterator itEnd = 
+        set_intersection(v1.begin(), v1.end(), v2.begin(), v2.end(), vTarget.begin());
+
+	for_each(vTarget.begin(), itEnd, myPrint());
+	cout << endl;
+}
+
+int main() {
+
+	test01();
+
+	system("pause");
+
+	return 0;
+}
+```
+
+**总结：** 
+
+* 求交集的两个集合必须的有序序列
+* 目标容器开辟空间需要从**两个容器中取小值**
+* set_intersection返回值既是交集中最后一个元素的位置
+
+
+
+
+
+
+
+
+
+
+
+
+
+#### 5.6.2 set_union
+
+**功能描述：**
+
+* 求两个集合的并集
+
+
+
+**函数原型：**
+
+- `set_union(iterator beg1, iterator end1, iterator beg2, iterator end2, iterator dest);  `
+
+  // 求两个集合的并集
+
+  // **注意:两个集合必须是有序序列**
+
+  // beg1 容器1开始迭代器
+  // end1 容器1结束迭代器
+  // beg2 容器2开始迭代器
+  // end2 容器2结束迭代器
+  // dest 目标容器开始迭代器
+
+  
+
+**示例：**
+
+```C++
+#include <vector>
+#include <algorithm>
+
+class myPrint
+{
+public:
+	void operator()(int val)
+	{
+		cout << val << " ";
+	}
+};
+
+void test01()
+{
+	vector<int> v1;
+	vector<int> v2;
+	for (int i = 0; i < 10; i++) {
+		v1.push_back(i);
+		v2.push_back(i+5);
+	}
+
+	vector<int> vTarget;
+	//取两个容器的和给目标容器开辟空间
+	vTarget.resize(v1.size() + v2.size());
+
+	//返回目标容器的最后一个元素的迭代器地址
+	vector<int>::iterator itEnd = 
+        set_union(v1.begin(), v1.end(), v2.begin(), v2.end(), vTarget.begin());
+
+	for_each(vTarget.begin(), itEnd, myPrint());
+	cout << endl;
+}
+
+int main() {
+
+	test01();
+
+	system("pause");
+
+	return 0;
+}
+```
+
+**总结：** 
+
+- 求并集的两个集合必须的有序序列
+- 目标容器开辟空间需要**两个容器相加**
+- set_union返回值既是并集中最后一个元素的位置
+
+
+
+
+
+
+
+
+#### 5.6.3  set_difference
+
+**功能描述：**
+
+* 求两个集合的差集
+
+
+
+**函数原型：**
+
+- `set_difference(iterator beg1, iterator end1, iterator beg2, iterator end2, iterator dest);  `
+
+  // 求两个集合的差集
+
+  // **注意:两个集合必须是有序序列**
+
+  // beg1 容器1开始迭代器
+  // end1 容器1结束迭代器
+  // beg2 容器2开始迭代器
+  // end2 容器2结束迭代器
+  // dest 目标容器开始迭代器
+
+  
+
+**示例：**
+
+```C++
+#include <vector>
+#include <algorithm>
+
+class myPrint
+{
+public:
+	void operator()(int val)
+	{
+		cout << val << " ";
+	}
+};
+
+void test01()
+{
+	vector<int> v1;
+	vector<int> v2;
+	for (int i = 0; i < 10; i++) {
+		v1.push_back(i);
+		v2.push_back(i+5);
+	}
+
+	vector<int> vTarget;
+	//取两个里面较大的值给目标容器开辟空间
+	vTarget.resize( max(v1.size() , v2.size()));
+
+	//返回目标容器的最后一个元素的迭代器地址
+	cout << "v1与v2的差集为： " << endl;
+	vector<int>::iterator itEnd = 
+        set_difference(v1.begin(), v1.end(), v2.begin(), v2.end(), vTarget.begin());
+	for_each(vTarget.begin(), itEnd, myPrint());
+	cout << endl;
+
+
+	cout << "v2与v1的差集为： " << endl;
+	itEnd = set_difference(v2.begin(), v2.end(), v1.begin(), v1.end(), vTarget.begin());
+	for_each(vTarget.begin(), itEnd, myPrint());
+	cout << endl;
+}
+
+int main() {
+
+	test01();
+
+	system("pause");
+
+	return 0;
+}
+```
+
+**总结：** 
+
+- 求差集的两个集合必须的有序序列
+- 目标容器开辟空间需要从**两个容器取较大值**
+- set_difference返回值既是差集中最后一个元素的位置
 
 
 
