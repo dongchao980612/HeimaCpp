@@ -9,7 +9,6 @@
 #include "Manager.h"
 #include "Worker.h"
 
-
 constexpr auto FILENAME = "empFile.txt";
 
 using namespace std;
