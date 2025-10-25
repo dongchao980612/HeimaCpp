@@ -28,7 +28,7 @@ void press_key()
 {
 	cout << "Press any key to continue...\n";
 	cin.get();
-	system("clear");
+	// system("clear");
 }
 
 void addPerson(Addressbooks *abs)
@@ -227,15 +227,16 @@ void cleanPerson(Addressbooks *abs)
 
 void showMenu()
 {
-	cout << "***************************" << endl;
-	cout << "*****  1、添加联系人  *****" << endl;
-	cout << "*****  2、显示联系人  *****" << endl;
-	cout << "*****  3、删除联系人  *****" << endl;
-	cout << "*****  4、查找联系人  *****" << endl;
-	cout << "*****  5、修改联系人  *****" << endl;
-	cout << "*****  6、清空联系人  *****" << endl;
-	cout << "*****  0、退出通讯录  *****" << endl;
-	cout << "***************************" << endl;
+	cout << "\n===== 图书馆管理系统 =====" << endl;
+	cout << "1、添加联系人" << endl;
+	cout << "2、显示联系人" << endl;
+	cout << "3、删除联系人" << endl;
+	cout << "4、查找联系人" << endl;
+	cout << "5、修改联系人" << endl;
+	cout << "6、清空联系人" << endl;
+	cout << "0、退出通讯录" << endl;
+	cout <<"==========================" << endl;
+	cout <<"请输入操作编号：" << endl;
 }
 
 int main(int argc, char const *argv[])
@@ -272,10 +273,9 @@ int main(int argc, char const *argv[])
 				break;
 			case 0:	 //退出通讯录
 				cout << "欢迎下次使用..." << endl;
-				exit(0);
-				// break;
-			default:
 				break;
+			default:
+				cout << "无效操作编号，请重新输入！"<< endl;
 		}
 	}
 

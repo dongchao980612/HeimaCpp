@@ -24,9 +24,9 @@ https://www.bilibili.com/video/av41559729/
 
 ### 开发环境 
 
-- Linux DESKTOP-VMCNC4D 5.15.133.1-microsoft-standard-WSL2 #1 SMP Thu Oct 5 21:02:42 UTC 2023 x86_64 x86_64 x86_64 GNU/Linux
-- vscode
-- g++ (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0
-- git version 2.34.1
-- clang-format
+- Windows 10
+- mingw
+- g++ version 11.5.0
+- git version 2.51.1.windows.1
+
 

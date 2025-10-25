@@ -44,7 +44,6 @@ int main(int argc, char const* argv[])
 				wm.Clean_File();
 				break;
 			default:
-				system("cls");	//清屏
 				break;
 		}
 	}

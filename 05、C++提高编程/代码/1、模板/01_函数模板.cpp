@@ -19,7 +19,8 @@ void swapDouble(double& a, double& b)
 }
 
 //利用模板提供通用的交换函数
-template <typename T> void mySwap(T& a, T& b)
+template <typename T>
+void mySwap(T& a, T& b)
 {
 	T temp = a;
 	a = b;

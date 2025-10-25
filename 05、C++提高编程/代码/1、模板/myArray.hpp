@@ -2,7 +2,8 @@
 
 using namespace std;
 
-template <class T> class MyArray
+template <class T> 
+class MyArray
 {
    public:
 	// 有参构造 参数：容量
