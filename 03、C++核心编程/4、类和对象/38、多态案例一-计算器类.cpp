@@ -6,7 +6,7 @@ using namespace std;
 //普通实现
 class Calculator
 {
-   public:
+public:
 	int getResult(string oper)
 	{
 		if (oper == "+") {
@@ -21,7 +21,7 @@ class Calculator
 		//如果要提供新的运算，需要修改源码
 	}
 
-   public:
+public:
 	int m_Num1;
 	int m_Num2;
 };
@@ -43,8 +43,10 @@ void test01()
 //多态优点：代码组织结构清晰，可读性强，利于前期和后期的扩展以及维护
 class AbstractCalculator
 {
-   public:
-	virtual int getResult() { return 0; }
+public:
+	virtual int getResult() {
+		return 0;
+	}
 
 	int m_Num1;
 	int m_Num2;
@@ -53,22 +55,28 @@ class AbstractCalculator
 //加法计算器
 class AddCalculator : public AbstractCalculator
 {
-   public:
-	int getResult() { return m_Num1 + m_Num2; }
+public:
+	int getResult() {
+		return m_Num1 + m_Num2;
+	}
 };
 
 //减法计算器
 class SubCalculator : public AbstractCalculator
 {
-   public:
-	int getResult() { return m_Num1 - m_Num2; }
+public:
+	int getResult() {
+		return m_Num1 - m_Num2;
+	}
 };
 
 //乘法计算器
 class MulCalculator : public AbstractCalculator
 {
-   public:
-	int getResult() { return m_Num1 * m_Num2; }
+public:
+	int getResult() {
+		return m_Num1 * m_Num2;
+	}
 };
 
 void test02()
@@ -79,6 +87,7 @@ void test02()
 	abc->m_Num2 = 10;
 	cout << abc->m_Num1 << " + " << abc->m_Num2 << " = " << abc->getResult() << endl;
 	delete abc;	 //用完了记得销毁
+	abc = NULL;
 
 	//创建减法计算器
 	abc = new SubCalculator;

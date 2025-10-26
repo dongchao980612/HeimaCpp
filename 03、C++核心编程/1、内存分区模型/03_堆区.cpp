@@ -18,5 +18,8 @@ int main()
 	cout << *p << endl;
 	cout << *p << endl;
 
+	delete p;
+	p = NULL;
+	
 	return 0;
 }

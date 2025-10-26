@@ -114,29 +114,24 @@ class LenovoMemory : public Memory
 	virtual void storage() { cout << "Lenovo的内存条开始存储了！" << endl; }
 };
 
-static void test01()
+int main(int argc, char const* argv[])
 {
 	cout << "-----------------------" << endl;
 	cout << "第一台电脑开始工作：" << endl;
 	Computer* computer1 = new Computer(new IntelCPU, new IntelVideoCard, new IntelMemory);	//创建第一台电脑
 	computer1->work();
 	delete computer1;
-
+	
 	cout << "-----------------------" << endl;
 	cout << "第二台电脑开始工作：" << endl;
 	Computer* computer2 = new Computer(new LenovoCPU, new LenovoVideoCard, new LenovoMemory);  //第二台电脑组装
 	computer2->work();
 	delete computer2;
-
+	
 	cout << "-----------------------" << endl;
 	Computer* computer3 = new Computer(new LenovoCPU, new IntelVideoCard, new LenovoMemory);
 	cout << "第三台电脑开始工作：" << endl;
 	computer3->work();
 	delete computer3;
-}
-
-int main(int argc, char const* argv[])
-{
-	test01();
 	return 0;
 }

@@ -6,7 +6,7 @@ using namespace std;
 int* func()
 {
 	// 在堆区创建整型数据
-	// new返回的该书数据的指针
+	// new返回的该数据的指针
 	int* a = new int(10);
 	return a;
 }
@@ -14,28 +14,30 @@ int* func()
 void test01()
 {
 	int* p = func();
-	cout << *p << endl;
-	cout << *p << endl;
-	cout << *p << endl;
+	cout << "p = " << *p << endl;
+	cout << "p = " << *p << endl;
+	cout << "p = " << *p << endl;
 	//由程序员开辟与释放
 
 	delete p;
-	cout << *p << endl;	 // 内存已经释放，再次访问就是非法操作，会报错
+	p = NULL;
 }
 // 2、在堆区利用new开辟数组
 void test02()
 {
 	// 创建1个整型数据的数组，在堆区
-	int* arr = new int[10];
-	for (size_t i = 0; i < 10; i++) {
+	const int arr_size = 5;
+	int* arr = new int[arr_size];
+	for (int i = 0; i < arr_size; i++) {
 		arr[i] = i + 100;
 	}
 
-	for (size_t i = 0; i < 10; i++) {
+	for (int i = 0; i < arr_size; i++) {
 		cout << arr[i] << "\t";
 	}
 
-    delete[] arr; // 释放数组 要加[]才可以
+	delete[] arr; // 释放数组 要加[]才可以
+	arr = NULL;
 
 }
 int main()

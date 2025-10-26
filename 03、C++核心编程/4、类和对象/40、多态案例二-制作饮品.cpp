@@ -60,15 +60,10 @@ void DoWork(AbstractDrinking* drink)
 	delete drink;
 }
 
-void test01()
+int main(int argc, char const* argv[])
 {
 	DoWork(new Coffee);
 	cout << "--------------" << endl;
 	DoWork(new Tea);
-}
-
-int main(int argc, char const* argv[])
-{
-	test01();
 	return 0;
 }
