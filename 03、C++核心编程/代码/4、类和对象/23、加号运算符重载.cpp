@@ -4,27 +4,33 @@ using namespace std;
 
 class Person
 {
-   public:
-	Person(){};
+public:
+	Person() {};
 	Person(int a, int b)
 	{
 		this->m_A = a;
 		this->m_B = b;
 	}
-    
-	//成员函数实现 + 号运算符重载
-	Person operator+(const Person& p) { return Person(this->m_A + p.m_A, this->m_B + p.m_B); }
 
-   public:
+	//成员函数实现 + 号运算符重载
+	Person operator+(const Person& p) {
+		return Person(this->m_A + p.m_A, this->m_B + p.m_B);
+	}
+
+public:
 	int m_A;
 	int m_B;
 };
 
 //全局函数实现 + 号运算符重载
-Person operator+(const Person& p1, const Person& p2) { return Person(p1.m_A + p2.m_A, p1.m_B + p2.m_B); }
+Person operator+(const Person& p1, const Person& p2) {
+	return Person(p1.m_A + p2.m_A, p1.m_B + p2.m_B);
+}
 
 //运算符重载 可以发生函数重载
-Person operator+(const Person& p2, int val) { return Person(p2.m_A + val, p2.m_B + val); }
+Person operator+(const Person& p2, int val) {
+	return Person(p2.m_A + val, p2.m_B + val);
+}
 
 void test01()
 {
@@ -60,7 +66,7 @@ int main(int argc, char const* argv[])
 {
 	test01();
 	test02();
-    test03();
+	test03();
 
 	return 0;
 }
